@@ -29,7 +29,7 @@
         .then((out) => {
         	var html_out='';
             for(var i=0;i<out.data[1].variations.length;i++){
-              if(out.data[1].variations[i].remain_quantity>0 && out.data[1].variations[i].images[0].length>0){
+              if(out.data[1].variations[i].remain_quantity>0 && out.data[1].variations[i].images.length>0){
                 //console.log(out.data[0].variations[i].remain_quantity);
                 html_out+='<div style="padding-top:10px;padding-left:5px;padding-right:5px" class="col-sm-2 col-6 '+out.data[1].variations[i].fields[0].value+'" "'+out.data[1].variations[i].remain_quantity+'"><img style="max-width: 100%" src="'+out.data[1].variations[i].images[0]+'"></div>';
               }
