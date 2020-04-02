@@ -24,17 +24,20 @@
       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
       <script type="text/javascript">
-        fetch('https://pos.pages.fm/api/v1/shops/1426860/products?access_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIxZGIxYTgxMy00MjliLTQxZGYtYjViMi04OWY3MDdhMGFhYjAiLCJpYXQiOjE1ODUyODAxNjIsImZiX25hbWUiOiJI4bqhbmggTmjDom4iLCJmYl9pZCI6IjY4MzU0MDEwNTEzMjIzMiIsImV4cCI6MTU5MzA1NjE2Mn0.YrWa0oIYKFOLwUptXeZGLxu1VmRS72c00VakJ3lcxnI&page=1&page_size=30&only_has_wrong_quantity=false&exclude_has_wrong_quantity=false&nearly_out_of_stock=false&sell_fast=false&sell_slow=false&limit_quantity_to_warn=false&last_imported_price=false')
+        fetch('https://pos.pages.fm/api/v1/shops/1458605/products?access_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIxZGIxYTgxMy00MjliLTQxZGYtYjViMi04OWY3MDdhMGFhYjAiLCJpYXQiOjE1ODQ2Mzg0MzEsImZiX25hbWUiOiJI4bqhbmggTmjDom4iLCJmYl9pZCI6IjY4MzU0MDEwNTEzMjIzMiIsImV4cCI6MTU5MjQxNDQzMX0.TgE0vsq05B1qqI_7DrS1R2BV3zny3XocTFUI8vgHQI0&page=1&page_size=30&only_has_wrong_quantity=false&exclude_has_wrong_quantity=false&nearly_out_of_stock=false&sell_fast=false&sell_slow=false&limit_quantity_to_warn=false&last_imported_price=false')
         .then(res => res.json())
         .then((out) => {
         	var html_out='';
 		var obj = out.data[2];
-            for(var i=0;i<obj.variations.length;i++){
-              if(obj.variations[i].remain_quantity>0 && obj.variations[i].images.length>0){
-                //console.log(out.data[0].variations[i].remain_quantity);
-                html_out+='<div style="padding-top:10px;padding-left:5px;padding-right:5px" class="col-sm-2 col-6 '+obj.variations[i].fields[0].value+' R'+obj.variations[i].remain_quantity+'"><img style="max-width: 100%" src="'+obj.variations[i].images[0]+'"></div>';
-              }
-            }
+		for(var j=0;j<out.data.length;j++){
+			for(var i=0;i<out.data[j].variations.length;i++){
+		      if(out.data[j].variations[i].remain_quantity>0 && out.data[j].variations[i].images.length>0){
+			//console.log(out.data[0].variations[i].remain_quantity);
+			html_out+='<div style="padding-top:10px;padding-left:5px;padding-right:5px" class="col-sm-2 col-6 '+out.data[j].variations[i].fields[0].value+' R'+out.data[j].variations[i].remain_quantity+'"><img style="max-width: 100%" src="'+out.data[j].variations[i].images[0]+'"></div>';
+		      }
+		    }
+		}
+            
             jQuery('.container .row').html(html_out);
         }).catch(err => console.error(err));
       </script>
