@@ -27,7 +27,7 @@
         fetch('https://pos.pages.fm/api/v1/shops/1458605/products?access_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIxZGIxYTgxMy00MjliLTQxZGYtYjViMi04OWY3MDdhMGFhYjAiLCJpYXQiOjE1ODQ2Mzg0MzEsImZiX25hbWUiOiJI4bqhbmggTmjDom4iLCJmYl9pZCI6IjY4MzU0MDEwNTEzMjIzMiIsImV4cCI6MTU5MjQxNDQzMX0.TgE0vsq05B1qqI_7DrS1R2BV3zny3XocTFUI8vgHQI0&page=1&page_size=30&only_has_wrong_quantity=false&exclude_has_wrong_quantity=false&nearly_out_of_stock=false&sell_fast=false&sell_slow=false&limit_quantity_to_warn=false&last_imported_price=false')
         .then(res => res.json())
         .then((out) => {
-        	var html_out, ma='';
+        	var html_out=''; var ma='';
 		var obj = out.data[2];
 		for(var j=0;j<out.data.length;j++){
 			for(var i=0;i<out.data[j].variations.length;i++){
@@ -39,7 +39,7 @@
 		    }
 		}
 		jQuery('.container .row').html(html_out);
-		console.log(html_out);
+		console.log(ma);
         }).catch(err => console.error(err));
       </script>
       
