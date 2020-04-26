@@ -31,7 +31,7 @@
 		var obj = out.data[2];
 		for(var j=0;j<out.data.length;j++){
 			for(var i=0;i<out.data[j].variations.length;i++){
-				if(out.data[j].variations[i].remain_quantity>0 && out.data[j].variations[i].images.length>0 && !out.data[j].custom_id.includes("dài") && !out.data[j].custom_id.includes("dài2")){
+				if(out.data[j].variations[i].remain_quantity>0 && out.data[j].variations[i].images.length>0 && !out.data[j].custom_id.includes("dài") && !out.data[j].name.includes("dài2")){
 					//console.log(out.data[0].variations[i].remain_quantity);
 					html_out+='<div style="padding-top:10px;padding-left:5px;padding-right:5px" class="col-sm-2 col-6 '+out.data[j].variations[i].fields[0].value+' R'+out.data[j].variations[i].remain_quantity+'"><img style="max-width: 100%" src="'+out.data[j].variations[i].images[0]+'"></div>';
 					ma+= out.data[j].variations[i].fields[0].value;
