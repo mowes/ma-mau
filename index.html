@@ -66,7 +66,7 @@
             // Tính khoảng thời gian còn lại (tính bằng mili giây)
             const timeLeft = targetDate.getTime() - now.getTime();
 			console.log(timeLeft);
-			if (timeLeft == 0) {
+			if (timeLeft > 300000) {
                 clearInterval(countdownInterval);
 				return;
             }
@@ -103,6 +103,7 @@
       
    </body>
 </html>
+
 
 
 
