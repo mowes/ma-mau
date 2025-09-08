@@ -76,10 +76,10 @@
             const formattedHours = String(hours).padStart(2, '0');
             const formattedMinutes = String(minutes).padStart(2, '0');
             const formattedSeconds = String(seconds).padStart(2, '0');
-            const formattedMilliseconds = String(milliseconds).padStart(3, '0');
+            const formattedMilliseconds = String(milliseconds).padStart(1, '0');
 
             // Hiển thị thời gian còn lại lên thẻ h1
-            h1Element.textContent = `Thời gian còn lại: ${formattedHours}:${formattedMinutes}:${formattedSeconds}.${formattedMilliseconds}`;
+            h1Element.textContent = `${formattedMinutes}:${formattedSeconds}.${formattedMilliseconds}`;
         }
 
         // Cập nhật đồng hồ lần đầu tiên khi tải trang
@@ -91,6 +91,7 @@
       
    </body>
 </html>
+
 
 
 
