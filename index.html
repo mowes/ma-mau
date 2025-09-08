@@ -13,7 +13,7 @@
    </head>
    <body>
     <h1 id="countdown" class="d-flex justify-content-center" style="font-size:100px;padding: 30px;"></h1>
-	  <div id="idtt"></div>
+	  <div id="idtt" class="d-flex justify-content-center"></div>
 
       <!-- Optional JavaScript -->
       <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -45,6 +45,8 @@
         
         // Lấy thẻ h1 để hiển thị thời gian
         const h1Element = document.getElementById('countdown');
+		const dividtt = document.getElementById('idtt');
+		dividtt.textContent=params.ttid;
 		let countdownInterval;
         function updateCountdown() {
             // Lấy thời gian hiện tại
@@ -99,6 +101,7 @@
       
    </body>
 </html>
+
 
 
 
