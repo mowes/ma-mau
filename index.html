@@ -48,7 +48,7 @@
         
         // Lấy thẻ h1 để hiển thị thời gian
         const h1Element = document.getElementById('countdown');
-
+		let countdownInterval;
         function updateCountdown() {
             // Lấy thời gian hiện tại
             const now = new Date();
@@ -73,6 +73,10 @@
                 h1Element.style.backgroundColor = 'transparent'; // Trả lại màu nền trong suốt
                 h1Element.style.color = '#e53e3e'; // Trả lại màu chữ ban đầu
             }
+			if (timeLeft == 0) {
+                clearInterval(countdownInterval);
+				return;
+            }
             // Chuyển đổi mili giây sang hh:mm:ss.sss
             const hours = Math.floor(timeLeft / (1000 * 60 * 60));
             const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
@@ -92,11 +96,12 @@
         updateCountdown();
 
         // Cập nhật đồng hồ mỗi 10 mili giây để có hiệu ứng mượt mà
-        setInterval(updateCountdown, 10);
+        countdownInterval = setInterval(updateCountdown, 10);
       </script>
       
    </body>
 </html>
+
 
 
 
