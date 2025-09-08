@@ -65,6 +65,11 @@
 
             // Tính khoảng thời gian còn lại (tính bằng mili giây)
             const timeLeft = targetDate.getTime() - now.getTime();
+			console.log(timeLeft);
+			if (timeLeft == 0) {
+                clearInterval(countdownInterval);
+				return;
+            }
 			// Kiểm tra nếu còn dưới 1 giây để chuyển màu
             if (timeLeft < 1000) {
                 h1Element.style.backgroundColor = 'aqua'; // Chuyển màu nền sang xanh
@@ -73,10 +78,7 @@
                 h1Element.style.backgroundColor = 'transparent'; // Trả lại màu nền trong suốt
                 h1Element.style.color = '#e53e3e'; // Trả lại màu chữ ban đầu
             }
-			if (timeLeft == 0) {
-                clearInterval(countdownInterval);
-				return;
-            }
+			
             // Chuyển đổi mili giây sang hh:mm:ss.sss
             const hours = Math.floor(timeLeft / (1000 * 60 * 60));
             const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
@@ -96,11 +98,12 @@
         updateCountdown();
 
         // Cập nhật đồng hồ mỗi 10 mili giây để có hiệu ứng mượt mà
-        countdownInterval = setInterval(updateCountdown, 10);
+        countdownInterval = setInterval(updateCountdown, 2000);
       </script>
       
    </body>
 </html>
+
 
 
 
