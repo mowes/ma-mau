@@ -43,53 +43,55 @@
 		
 		//console.log(params.name); // Output: "John"
 		//console.log(params.age);  // Output: "30"
-		// Thiết lập mốc thời gian mục tiêu (ví dụ: 14:00:00)
-		const targetTime = params.timeend; 
-		
-		// Lấy đối tượng h1 để hiển thị thời gian
-		const h1Element = document.querySelector('h1');
-		
-		function updateCountdown() {
-		    // Lấy thời gian hiện tại
-		    const now = new Date();
-		
-		    // Tạo đối tượng Date cho mốc thời gian mục tiêu của ngày hôm nay
-		    const [targetHour, targetMinute, targetSecond] = targetTime.split(':').map(Number);
-		    const targetDate = new Date();
-		    targetDate.setHours(targetHour, targetMinute, targetSecond);
-		
-		    // Nếu mốc thời gian đã qua, đếm ngược đến ngày mai
-		    if (now > targetDate) {
-		        targetDate.setDate(targetDate.getDate() + 1);
-		    }
-		
-		    // Tính khoảng thời gian còn lại (tính bằng mili giây)
-		    const timeLeft = targetDate.getTime() - now.getTime();
-		    // Chuyển đổi mili giây sang hh:mm:ss
-		    const hours = Math.floor(timeLeft / (1000 * 60 * 60));
-		    const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-		    const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-			const milliseconds = timeLeft % 1000;
-		
-		    // Định dạng chuỗi hh:mm:ss
-		    const formattedHours = String(hours).padStart(2, '0');
-		    const formattedMinutes = String(minutes).padStart(2, '0');
-		    const formattedSeconds = String(seconds).padStart(2, '0');
-			const formattedMiliSeconds = String(milliseconds).padStart(3, '0');
-		
-		    // Hiển thị thời gian còn lại lên thẻ h1
-		    h1Element.textContent = `${formattedMinutes}:${formattedSeconds}.${formattedMiliSeconds}`;
-		}
-		
-		// Cập nhật đồng hồ lần đầu khi tải trang
-		updateCountdown();
-		
-		// Cập nhật đồng hồ mỗi giây
-		setInterval(updateCountdown, 20);
+		// Thời gian mục tiêu để đếm ngược đến (định dạng HH:MM:SS)
+        const targetTime = params.timeend; 
+        
+        // Lấy thẻ h1 để hiển thị thời gian
+        const h1Element = document.getElementById('countdown');
+
+        function updateCountdown() {
+            // Lấy thời gian hiện tại
+            const now = new Date();
+            
+            // Tạo đối tượng Date cho thời gian mục tiêu của ngày hôm nay
+            const [targetHour, targetMinute, targetSecond] = targetTime.split(':').map(Number);
+            const targetDate = new Date();
+            targetDate.setHours(targetHour, targetMinute, targetSecond, 0); // Đặt mili giây về 0 để tính toán chính xác
+
+            // Nếu thời gian mục tiêu đã qua, đặt mục tiêu là ngày hôm sau
+            if (now > targetDate) {
+                targetDate.setDate(targetDate.getDate() + 1);
+            }
+
+            // Tính khoảng thời gian còn lại (tính bằng mili giây)
+            const timeLeft = targetDate.getTime() - now.getTime();
+
+            // Chuyển đổi mili giây sang hh:mm:ss.sss
+            const hours = Math.floor(timeLeft / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+            const milliseconds = timeLeft % 1000;
+
+            // Định dạng chuỗi để luôn có 2 chữ số (giờ, phút, giây) và 3 chữ số (mili giây)
+            const formattedHours = String(hours).padStart(2, '0');
+            const formattedMinutes = String(minutes).padStart(2, '0');
+            const formattedSeconds = String(seconds).padStart(2, '0');
+            const formattedMilliseconds = String(milliseconds).padStart(3, '0');
+
+            // Hiển thị thời gian còn lại lên thẻ h1
+            h1Element.textContent = `Thời gian còn lại: ${formattedHours}:${formattedMinutes}:${formattedSeconds}.${formattedMilliseconds}`;
+        }
+
+        // Cập nhật đồng hồ lần đầu tiên khi tải trang
+        updateCountdown();
+
+        // Cập nhật đồng hồ mỗi 10 mili giây để có hiệu ứng mượt mà
+        setInterval(updateCountdown, 10);
       </script>
       
    </body>
 </html>
+
 
 
 
