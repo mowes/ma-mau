@@ -65,7 +65,6 @@
 
             // Tính khoảng thời gian còn lại (tính bằng mili giây)
             const timeLeft = targetDate.getTime() - now.getTime();
-			console.log(timeLeft);
 			if (timeLeft > 300000) {
                 clearInterval(countdownInterval);
 				return;
@@ -98,11 +97,12 @@
         updateCountdown();
 
         // Cập nhật đồng hồ mỗi 10 mili giây để có hiệu ứng mượt mà
-        countdownInterval = setInterval(updateCountdown, 2000);
+        countdownInterval = setInterval(updateCountdown, 10);
       </script>
       
    </body>
 </html>
+
 
 
 
