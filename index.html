@@ -66,6 +66,7 @@
             const timeLeft = targetDate.getTime() - now.getTime();
 			if (timeLeft > 300000) {
                 clearInterval(countdownInterval);
+				h1Element.style.backgroundColor = 'transparent';
 				return;
             }
 			// Kiểm tra nếu còn dưới 1 giây để chuyển màu
@@ -101,6 +102,7 @@
       
    </body>
 </html>
+
 
 
 
