@@ -55,7 +55,7 @@
             // Tạo đối tượng Date cho thời gian mục tiêu của ngày hôm nay
             const [targetHour, targetMinute, targetSecond] = targetTime.split(':').map(Number);
             const targetDate = new Date();
-            targetDate.setHours(targetHour, targetMinute, targetSecond+2, 0); // Đặt mili giây về 0 để tính toán chính xác
+            targetDate.setHours(targetHour, targetMinute, targetSecond, 0); // Đặt mili giây về 0 để tính toán chính xác
 
             // Nếu thời gian mục tiêu đã qua, đặt mục tiêu là ngày hôm sau
             if (now > targetDate) {
@@ -102,6 +102,7 @@
       
    </body>
 </html>
+
 
 
 
