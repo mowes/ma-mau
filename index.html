@@ -145,9 +145,11 @@
             if (currentBeatIndex !== lastBeatIndex) {
                 // Chỉ phát âm thanh khi nhịp thay đổi
                 if (isAudioContextStarted && beatSynth) {
-                    // CẬP NHẬT: Nhịp 2 (index 1) phát nốt D5 cao hơn
-                    const note = (currentBeatIndex === 1) ? "D5" : "C5"; 
-                    beatSynth.triggerAttackRelease(note, "16n"); // Phát nốt ngắn
+                    // CẬP NHẬT: Chỉ phát âm thanh ở Nhịp 2 (index 1) với nốt D5.
+                    if (currentBeatIndex === 1) {
+                        beatSynth.triggerAttackRelease("D5", "16n"); // Phát nốt D5
+                    }
+                    // Các nhịp khác (0, 2, 3) sẽ im lặng.
                 }
                 lastBeatIndex = currentBeatIndex;
             }
