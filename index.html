@@ -3,14 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thanh Tiến Trình Mili Giây</title>
+    <title>Thanh Tiến Trình 4 Nhịp/Giây</title>
     <!-- Tải Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tải Tone.js cho âm thanh -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.min.js"></script>
     <!-- Cấu hình Font Inter và màu sắc -->
     <style>
         body {
             font-family: 'Inter', sans-serif;
             background-color: #f3f4f6; /* Nền xám nhạt */
+        }
+        /* Định nghĩa animation rung nhẹ cho nhịp cuối */
+        @keyframes pulse-once {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+        .animate-beat {
+            animation: pulse-once 0.1s ease-in-out;
         }
     </style>
 </head>
@@ -18,7 +28,7 @@
 
     <!-- Thẻ bao ngoài chính -->
     <div class="w-full max-w-2xl bg-white shadow-xl rounded-xl p-6 md:p-8">
-        <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">Tiến Trình Mili Giây Hiện Tại</h1>
+        <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">Đồng Hồ 4 Nhịp/Giây (Có Bíp)</h1>
         
         <!-- Khu vực hiển thị thời gian và tiến trình -->
         <div class="space-y-6">
@@ -33,17 +43,23 @@
 
             <!-- Thanh tiến trình -->
             <div>
-                <p class="text-lg font-semibold text-gray-700 mb-2">Mili Giây Trong Giây Hiện Tại (0-999):</p>
+                <p class="text-lg font-semibold text-gray-700 mb-2">Tiến Trình Nhịp Hiện Tại (1 nhịp = 250ms):</p>
                 <div class="w-full bg-gray-200 rounded-full h-8 overflow-hidden shadow-inner">
+                    <!-- Loại bỏ các lớp gradient cũ và chuẩn bị cho các lớp màu dynamic -->
                     <div id="progress-bar" 
-                         class="h-8 bg-gradient-to-r from-indigo-500 to-purple-600 transition-all duration-100 ease-linear rounded-full" 
+                         class="h-8 transition-all duration-150 ease-linear rounded-full" 
                          style="width: 0%;">
                     </div>
                 </div>
-                <div id="ms-text" class="text-right text-sm font-mono mt-1 text-gray-600">0 ms</div>
+                <div id="ms-text" class="text-right text-sm font-mono mt-1 text-gray-600">Nhịp: 0 | 0 ms</div>
             </div>
             
         </div>
+        
+        <!-- Nút kích hoạt âm thanh -->
+        <button id="start-button" class="mt-8 w-full py-3 text-lg font-semibold text-white bg-green-600 rounded-lg shadow-md hover:bg-green-700 transition duration-150 active:scale-95">
+            🔊 Bấm để Kích hoạt Âm thanh (Nhịp Bíp)
+        </button>
     </div>
 
     <script>
@@ -51,12 +67,15 @@
         const progressBar = document.getElementById('progress-bar');
         const msText = document.getElementById('ms-text');
         const timeDisplay = document.getElementById('time-display');
+        const startButton = document.getElementById('start-button');
+        
+        // Biến Tone.js và trạng thái nhịp
+        let beatSynth = null;
+        let lastBeatIndex = -1;
+        let isAudioContextStarted = false;
 
         /**
          * Hàm padding: Thêm số 0 vào đầu nếu cần
-         * @param {number} num - Số cần thêm padding
-         * @param {number} size - Kích thước chuỗi mong muốn
-         * @returns {string} Chuỗi đã thêm padding
          */
         function pad(num, size) {
             let s = "000" + num;
@@ -64,7 +83,42 @@
         }
 
         /**
-         * Cập nhật hiển thị thời gian và thanh tiến trình
+         * Hàm khởi tạo và bắt đầu Audio Context
+         */
+        function startAudio() {
+            // Bắt đầu Tone.js (cần tương tác người dùng)
+            Tone.start().then(() => {
+                // Khởi tạo Synth cho âm thanh 'bíp'
+                beatSynth = new Tone.Synth({
+                    oscillator: { type: "square" }, // Âm thanh đơn giản, rõ ràng
+                    envelope: {
+                        attack: 0.005,
+                        decay: 0.05,
+                        sustain: 0.01,
+                        release: 0.05
+                    }
+                }).toDestination();
+                
+                // Đặt cờ trạng thái
+                isAudioContextStarted = true;
+                
+                // Ẩn nút sau khi khởi động thành công
+                startButton.style.display = 'none';
+                console.log("Audio Context đã được khởi động.");
+
+            }).catch(e => {
+                console.error("Lỗi khởi tạo âm thanh Tone.js:", e);
+                startButton.textContent = "Lỗi âm thanh! Vui lòng tải lại trang.";
+                startButton.classList.remove('bg-green-600', 'hover:bg-green-700');
+                startButton.classList.add('bg-red-600');
+            });
+        }
+        
+        startButton.addEventListener('click', startAudio);
+
+
+        /**
+         * Cập nhật hiển thị thời gian, nhịp và thanh tiến trình
          */
         function updateProgress() {
             const now = new Date();
@@ -72,44 +126,57 @@
             // 1. Tính toán Mili giây
             const milliseconds = now.getMilliseconds();
             
-            // 2. Tính toán Phần trăm
-            // Mili giây chạy từ 0 đến 999.
-            const percentage = (milliseconds / 1000) * 100;
-
-            // 3. Cập nhật Thanh Tiến trình Width
-            progressBar.style.width = percentage.toFixed(2) + '%';
+            // 2. Tính toán Nhịp (Beat)
+            const beatDuration = 250; // 1000ms / 4 nhịp
             
-            // --- LOGIC MÀU: Chuyển sang ĐỎ khi 500ms <= ms < 600ms ---
-            const isRedTime = milliseconds >= 500 && milliseconds < 600;
+            // Xác định nhịp hiện tại (0, 1, 2, hoặc 3)
+            const currentBeatIndex = Math.floor(milliseconds / beatDuration);
+            
+            // Số nhịp hiển thị cho người dùng (1, 2, 3, hoặc 4)
+            const displayBeat = currentBeatIndex + 1;
 
-            // Định nghĩa các lớp màu
-            const gradientClasses = ['bg-gradient-to-r', 'from-indigo-500', 'to-purple-600'];
-            const redClass = 'bg-red-600';
-            const pulseClass = 'animate-pulse';
+            // 3. Tính toán Phần trăm (Rời rạc)
+            const discretePercentage = displayBeat * 25; // 25%, 50%, 75%, 100%
 
-            if (isRedTime) {
-                // CHUYỂN SANG ĐỎ (50% đến 60%)
-                
-                // 1. Loại bỏ Gradient
-                gradientClasses.forEach(c => progressBar.classList.remove(c));
-                
-                // 2. Thêm màu Đỏ và hiệu ứng rung nhẹ
-                progressBar.classList.add(redClass, pulseClass);
-            } else {
-                // TRẢ VỀ MÀU CŨ (Gradient)
-                
-                // 1. Loại bỏ màu Đỏ và hiệu ứng rung
-                progressBar.classList.remove(redClass, pulseClass);
-                
-                // 2. Thêm lại Gradient
-                gradientClasses.forEach(c => progressBar.classList.add(c));
+            // 4. Cập nhật Thanh Tiến trình Width
+            progressBar.style.width = discretePercentage + '%';
+            
+            // 5. LOGIC ÂM THANH
+            if (currentBeatIndex !== lastBeatIndex) {
+                // Chỉ phát âm thanh khi nhịp thay đổi
+                if (isAudioContextStarted && beatSynth) {
+                    // CẬP NHẬT: Nhịp 2 (index 1) phát nốt D5 cao hơn
+                    const note = (currentBeatIndex === 1) ? "D5" : "C5"; 
+                    beatSynth.triggerAttackRelease(note, "16n"); // Phát nốt ngắn
+                }
+                lastBeatIndex = currentBeatIndex;
+            }
+            
+            // 6. LOGIC MÀU & HIỆU ỨNG (Traffic Light Logic)
+            
+            // Loại bỏ tất cả các lớp màu cũ trước khi áp dụng màu mới
+            progressBar.classList.remove('bg-green-500', 'bg-yellow-500', 'bg-orange-500', 'bg-red-600', 'animate-beat');
+
+            switch (displayBeat) {
+                case 1:
+                    progressBar.classList.add('bg-green-500'); // Xanh Lá
+                    break;
+                case 2:
+                    progressBar.classList.add('bg-yellow-500'); // Vàng
+                    break;
+                case 3:
+                    progressBar.classList.add('bg-orange-500'); // Cam
+                    break;
+                case 4:
+                    progressBar.classList.add('bg-red-600', 'animate-beat'); // Đỏ
+                    break;
             }
             // -------------------------------------------------------------
 
-            // 4. Cập nhật Mili giây bằng số
-            msText.textContent = `${pad(milliseconds, 3)} ms`;
+            // 7. Cập nhật văn bản hiển thị
+            msText.textContent = `Nhịp: ${displayBeat} | ${pad(milliseconds, 3)} ms`;
 
-            // 5. Cập nhật hiển thị thời gian đầy đủ
+            // 8. Cập nhật hiển thị thời gian đầy đủ
             const hours = pad(now.getHours(), 2);
             const minutes = pad(now.getMinutes(), 2);
             const seconds = pad(now.getSeconds(), 2);
@@ -117,15 +184,12 @@
             
             timeDisplay.textContent = `${hours}:${minutes}:${seconds}.${msPadded}`;
 
-            // Yêu cầu trình duyệt cập nhật lại càng nhanh càng tốt (thường là 60 lần/giây)
+            // Yêu cầu trình duyệt cập nhật lại
             requestAnimationFrame(updateProgress);
         }
 
-        // Bắt đầu vòng lặp cập nhật
+        // Bắt đầu vòng lặp cập nhật UI ngay lập tức
         updateProgress();
-        
-        // Ghi chú: Sử dụng requestAnimationFrame thay vì setInterval để đảm bảo
-        // hiệu suất mượt mà nhất và đồng bộ với tốc độ khung hình của trình duyệt.
     </script>
 </body>
 </html>
