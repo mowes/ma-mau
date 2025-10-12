@@ -51,39 +51,138 @@
         <h2>2. Nút Phát Tùy Chỉnh (Dùng JavaScript)</h2>
         <p>Thẻ audio được ẩn đi (không có 'controls'). Hành động Phát/Dừng được điều khiển bằng JavaScript.</p>
         
-        <audio id="customAudio">
+        <audio id="Cherry">
             <source src="Cherry.mp3" type="audio/mpeg">
+        </audio>
+        <audio id="Banana">
+            <source src="Banana.mp3" type="audio/mpeg">
+        </audio>
+        <audio id="Lemon">
+            <source src="Lemon.mp3" type="audio/mpeg">
+        </audio>
+        <audio id="Grapefruit">
+            <source src="Grapefruit.mp3" type="audio/mpeg">
+        </audio>
+        <audio id="Kiwi">
+            <source src="Kiwi.mp3" type="audio/mpeg">
+        </audio>
+        <audio id="Pomelo">
+            <source src="Pomelo.mp3" type="audio/mpeg">
+        </audio>
+        <audio id="Sapota">
+            <source src="Sapota.mp3" type="audio/mpeg">
+        </audio>
+        <audio id="Coconut">
+            <source src="Coconut.mp3" type="audio/mpeg">
+        </audio>
+        <audio id="Pumpkin">
+            <source src="Pumpkin.mp3" type="audio/mpeg">
+        </audio>
+        <audio id="Cactus">
+            <source src="Cactus.mp3" type="audio/mpeg">
         </audio>
 
         <button id="customPlayButton">
-            Phát Nhạc (JS)
+            Home
+        </button>
+        <button id="customPlayButton1">
+            Đa nhiệm
+        </button>
+        <button id="customPlayButton2">
+            Mở tiktok
+        </button>
+        <button id="customPlayButton3">
+            Mở HMA
+        </button>
+        <button id="customPlayButton4">
+            Phát Nhạc (JS)1
+        </button>
+        <button id="customPlayButton5">
+            Phát Nhạc (JS)2
+        </button>
+        <button id="customPlayButton6">
+            Phát Nhạc (JS)3
+        </button>
+        <button id="customPlayButton7">
+            Phát Nhạc (JS)4
+        </button>
+        <button id="customPlayButton8">
+            Phát Nhạc (JS)5
+        </button>
+        <button id="customPlayButton9">
+            Phát Nhạc (JS)6
         </button>
     </div>
 
 
     <script>
         // Lấy các phần tử bằng ID
-        const customAudio = document.getElementById('customAudio');
+        const cherry = document.getElementById('Cherry');
         const customButton = document.getElementById('customPlayButton');
 
         // Thêm sự kiện khi click vào nút tùy chỉnh
         customButton.addEventListener('click', function() {
-            if (customAudio.paused) {
+            cherry.play();
+        });
+        const Banana = document.getElementById('Banana');
+        const customButton1 = document.getElementById('customPlayButton1');
+                // Thêm sự kiện khi click vào nút tùy chỉnh
+        customButton1.addEventListener('click', function() {
+            if (Banana.paused) {
                 // Nếu đang dừng, thì phát
-                customAudio.play();
-                customButton.textContent = 'Dừng Nhạc (JS)'; 
+                Banana.play();
+                customButton.textContent = 'Home'; 
             } else {
                 // Nếu đang phát, thì dừng
-                customAudio.pause();
-                customButton.textContent = 'Phát Nhạc (JS)'; 
+                Banana.pause();
+                customButton.textContent = 'Home'; 
+            }
+        });
+        const Lemon = document.getElementById('Lemon');
+        const customButton2 = document.getElementById('customPlayButton2');
+                // Thêm sự kiện khi click vào nút tùy chỉnh
+        customButton2.addEventListener('click', function() {
+            if (Lemon.paused) {
+                // Nếu đang dừng, thì phát
+                Lemon.play();
+                customButton.textContent = 'Home'; 
+            } else {
+                // Nếu đang phát, thì dừng
+                Lemon.pause();
+                customButton.textContent = 'Home'; 
+            }
+        });
+        const Grapefruit = document.getElementById('Grapefruit');
+        const customButton3 = document.getElementById('customPlayButton3');
+                // Thêm sự kiện khi click vào nút tùy chỉnh
+        customButton3.addEventListener('click', function() {
+            if (Grapefruit.paused) {
+                // Nếu đang dừng, thì phát
+                Grapefruit.play();
+                customButton.textContent = 'Home'; 
+            } else {
+                // Nếu đang phát, thì dừng
+                Grapefruit.pause();
+                customButton.textContent = 'Home'; 
+            }
+        });
+        const Kiwi = document.getElementById('Kiwi');
+        const customButton4 = document.getElementById('customPlayButton4');
+                // Thêm sự kiện khi click vào nút tùy chỉnh
+        customButton4.addEventListener('click', function() {
+            if (Kiwi.paused) {
+                // Nếu đang dừng, thì phát
+                Kiwi.play();
+                customButton.textContent = 'Home'; 
+            } else {
+                // Nếu đang phát, thì dừng
+                Kiwi.pause();
+                customButton.textContent = 'Home'; 
             }
         });
         
-        // (Tùy chọn) Đảm bảo nút cập nhật trạng thái nếu âm thanh tự kết thúc
-        customAudio.addEventListener('ended', function() {
-            customButton.textContent = 'Phát Lại (JS)';
-        });
     </script>
 
 </body>
 </html>
+
