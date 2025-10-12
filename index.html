@@ -3,195 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thanh Tiến Trình 4 Nhịp/Giây</title>
-    <!-- Tải Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Tải Tone.js cho âm thanh -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.min.js"></script>
-    <!-- Cấu hình Font Inter và màu sắc -->
+    <title>Trang HTML Phát Audio</title>
+    
     <style>
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f3f4f6; /* Nền xám nhạt */
+            font-family: Arial, sans-serif;
+            margin: 40px;
         }
-        /* Định nghĩa animation rung nhẹ cho nhịp cuối */
-        @keyframes pulse-once {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.8; }
+        h2 {
+            border-bottom: 2px solid #ccc;
+            padding-bottom: 5px;
         }
-        .animate-beat {
-            animation: pulse-once 0.1s ease-in-out;
+        .audio-section {
+            margin-bottom: 30px;
+            padding: 15px;
+            border: 1px solid #eee;
+            border-radius: 5px;
+        }
+        #customPlayButton {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        #customPlayButton:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
-<body class="flex items-center justify-center min-h-screen p-4">
+<body>
 
-    <!-- Thẻ bao ngoài chính -->
-    <div class="w-full max-w-2xl bg-white shadow-xl rounded-xl p-6 md:p-8">
-        <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">Đồng Hồ 4 Nhịp/Giây (Có Bíp)</h1>
-        
-        <!-- Khu vực hiển thị thời gian và tiến trình -->
-        <div class="space-y-6">
-            
-            <!-- Hiển thị Thời gian số (Giây và Mili giây) -->
-            <div class="flex flex-col items-center justify-center bg-indigo-50 p-4 rounded-lg">
-                <p class="text-sm font-medium text-gray-600 uppercase tracking-wider">Thời Gian Hiện Tại (HH:MM:SS.ms)</p>
-                <div id="time-display" class="text-5xl md:text-6xl font-extrabold text-indigo-700 mt-1">
-                    00:00:00.000
-                </div>
-            </div>
+    <h1>Tham Chiếu File Audio trong HTML</h1>
 
-            <!-- Thanh tiến trình -->
-            <div>
-                <p class="text-lg font-semibold text-gray-700 mb-2">Tiến Trình Nhịp Hiện Tại (1 nhịp = 250ms):</p>
-                <div class="w-full bg-gray-200 rounded-full h-8 overflow-hidden shadow-inner">
-                    <!-- Loại bỏ các lớp gradient cũ và chuẩn bị cho các lớp màu dynamic -->
-                    <div id="progress-bar" 
-                         class="h-8 transition-all duration-150 ease-linear rounded-full" 
-                         style="width: 0%;">
-                    </div>
-                </div>
-                <div id="ms-text" class="text-right text-sm font-mono mt-1 text-gray-600">Nhịp: 0 | 0 ms</div>
-            </div>
-            
-        </div>
+    <div class="audio-section">
+        <h2>1. Trình Phát Mặc Định (Dùng thuộc tính 'controls')</h2>
+        <p>Đây là cách đơn giản nhất. Trình duyệt tự động cung cấp nút Play/Pause, thanh âm lượng và thanh tiến trình.</p>
         
-        <!-- Nút kích hoạt âm thanh -->
-        <button id="start-button" class="mt-8 w-full py-3 text-lg font-semibold text-white bg-green-600 rounded-lg shadow-md hover:bg-green-700 transition duration-150 active:scale-95">
-            🔊 Bấm để Kích hoạt Âm thanh (Nhịp Bíp)
+        <audio controls>
+            <source src="Cherry.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <div class="audio-section">
+        <h2>2. Nút Phát Tùy Chỉnh (Dùng JavaScript)</h2>
+        <p>Thẻ audio được ẩn đi (không có 'controls'). Hành động Phát/Dừng được điều khiển bằng JavaScript.</p>
+        
+        <audio id="customAudio">
+            <source src="Cherry.mp3" type="audio/mpeg">
+        </audio>
+
+        <button id="customPlayButton">
+            Phát Nhạc (JS)
         </button>
     </div>
 
+
     <script>
-        // Lấy các phần tử DOM cần thiết
-        const progressBar = document.getElementById('progress-bar');
-        const msText = document.getElementById('ms-text');
-        const timeDisplay = document.getElementById('time-display');
-        const startButton = document.getElementById('start-button');
-        
-        // Biến Tone.js và trạng thái nhịp
-        let beatSynth = null;
-        let lastBeatIndex = -1;
-        let isAudioContextStarted = false;
+        // Lấy các phần tử bằng ID
+        const customAudio = document.getElementById('customAudio');
+        const customButton = document.getElementById('customPlayButton');
 
-        /**
-         * Hàm padding: Thêm số 0 vào đầu nếu cần
-         */
-        function pad(num, size) {
-            let s = "000" + num;
-            return s.substring(s.length - size);
-        }
-
-        /**
-         * Hàm khởi tạo và bắt đầu Audio Context
-         */
-        function startAudio() {
-            // Bắt đầu Tone.js (cần tương tác người dùng)
-            Tone.start().then(() => {
-                // Khởi tạo Synth cho âm thanh 'bíp'
-                beatSynth = new Tone.Synth({
-                    oscillator: { type: "square" }, // Âm thanh đơn giản, rõ ràng
-                    envelope: {
-                        attack: 0.005,
-                        decay: 0.05,
-                        sustain: 0.01,
-                        release: 0.05
-                    }
-                }).toDestination();
-                
-                // Đặt cờ trạng thái
-                isAudioContextStarted = true;
-                
-                // Ẩn nút sau khi khởi động thành công
-                startButton.style.display = 'none';
-                console.log("Audio Context đã được khởi động.");
-
-            }).catch(e => {
-                console.error("Lỗi khởi tạo âm thanh Tone.js:", e);
-                startButton.textContent = "Lỗi âm thanh! Vui lòng tải lại trang.";
-                startButton.classList.remove('bg-green-600', 'hover:bg-green-700');
-                startButton.classList.add('bg-red-600');
-            });
-        }
-        
-        startButton.addEventListener('click', startAudio);
-
-
-        /**
-         * Cập nhật hiển thị thời gian, nhịp và thanh tiến trình
-         */
-        function updateProgress() {
-            const now = new Date();
-            
-            // 1. Tính toán Mili giây
-            const milliseconds = now.getMilliseconds();
-            
-            // 2. Tính toán Nhịp (Beat)
-            const beatDuration = 250; // 1000ms / 4 nhịp
-            
-            // Xác định nhịp hiện tại (0, 1, 2, hoặc 3)
-            const currentBeatIndex = Math.floor(milliseconds / beatDuration);
-            
-            // Số nhịp hiển thị cho người dùng (1, 2, 3, hoặc 4)
-            const displayBeat = currentBeatIndex + 1;
-
-            // 3. Tính toán Phần trăm (Rời rạc)
-            const discretePercentage = displayBeat * 25; // 25%, 50%, 75%, 100%
-
-            // 4. Cập nhật Thanh Tiến trình Width
-            progressBar.style.width = discretePercentage + '%';
-            
-            // 5. LOGIC ÂM THANH
-            if (currentBeatIndex !== lastBeatIndex) {
-                // Chỉ phát âm thanh khi nhịp thay đổi
-                if (isAudioContextStarted && beatSynth) {
-                    // CẬP NHẬT: Chỉ phát âm thanh ở Nhịp 2 (index 1) với nốt D5.
-                    if (currentBeatIndex === 1) {
-                        beatSynth.triggerAttackRelease("D5", "16n"); // Phát nốt D5
-                    }
-                    // Các nhịp khác (0, 2, 3) sẽ im lặng.
-                }
-                lastBeatIndex = currentBeatIndex;
+        // Thêm sự kiện khi click vào nút tùy chỉnh
+        customButton.addEventListener('click', function() {
+            if (customAudio.paused) {
+                // Nếu đang dừng, thì phát
+                customAudio.play();
+                customButton.textContent = 'Dừng Nhạc (JS)'; 
+            } else {
+                // Nếu đang phát, thì dừng
+                customAudio.pause();
+                customButton.textContent = 'Phát Nhạc (JS)'; 
             }
-            
-            // 6. LOGIC MÀU & HIỆU ỨNG (Traffic Light Logic)
-            
-            // Loại bỏ tất cả các lớp màu cũ trước khi áp dụng màu mới
-            progressBar.classList.remove('bg-green-500', 'bg-yellow-500', 'bg-orange-500', 'bg-red-600', 'animate-beat');
-
-            switch (displayBeat) {
-                case 1:
-                    progressBar.classList.add('bg-green-500'); // Xanh Lá
-                    break;
-                case 2:
-                    progressBar.classList.add('bg-yellow-500'); // Vàng
-                    break;
-                case 3:
-                    progressBar.classList.add('bg-orange-500'); // Cam
-                    break;
-                case 4:
-                    progressBar.classList.add('bg-red-600', 'animate-beat'); // Đỏ
-                    break;
-            }
-            // -------------------------------------------------------------
-
-            // 7. Cập nhật văn bản hiển thị
-            msText.textContent = `Nhịp: ${displayBeat} | ${pad(milliseconds, 3)} ms`;
-
-            // 8. Cập nhật hiển thị thời gian đầy đủ
-            const hours = pad(now.getHours(), 2);
-            const minutes = pad(now.getMinutes(), 2);
-            const seconds = pad(now.getSeconds(), 2);
-            const msPadded = pad(milliseconds, 3);
-            
-            timeDisplay.textContent = `${hours}:${minutes}:${seconds}.${msPadded}`;
-
-            // Yêu cầu trình duyệt cập nhật lại
-            requestAnimationFrame(updateProgress);
-        }
-
-        // Bắt đầu vòng lặp cập nhật UI ngay lập tức
-        updateProgress();
+        });
+        
+        // (Tùy chọn) Đảm bảo nút cập nhật trạng thái nếu âm thanh tự kết thúc
+        customAudio.addEventListener('ended', function() {
+            customButton.textContent = 'Phát Lại (JS)';
+        });
     </script>
+
 </body>
 </html>
