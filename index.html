@@ -66,6 +66,9 @@
         <audio id="Kiwi">
             <source src="Kiwi.mp3" type="audio/mpeg">
         </audio>
+        <audio id="Cabbage">
+            <source src="Cabbage.mp3" type="audio/mpeg">
+        </audio>
         <audio id="Pomelo">
             <source src="Pomelo.mp3" type="audio/mpeg">
         </audio>
@@ -96,6 +99,12 @@
         </button>
         <button id="customPlayButton10">
             Touch rs ad btn
+        </button>
+        <button id="customPlayButton11">
+            Open time setting
+        </button>
+        <button id="customPlayButton12">
+            Touch rs time btn
         </button>
         <button id="customPlayButton1">
             Đa nhiệm
@@ -184,11 +193,22 @@
         customButton10.addEventListener('click', function() {
             Cactus.play();
         });
+        const Kiwi = document.getElementById('Kiwi');
+        const customButton11 = document.getElementById('customPlayButton11');
+        customButton11.addEventListener('click', function() {
+            Kiwi.play();
+        });
+        const Cabbage = document.getElementById('Cabbage');
+        const customButton12 = document.getElementById('customPlayButton12');
+        customButton12.addEventListener('click', function() {
+            Cabbage.play();
+        });
         
     </script>
 
 </body>
 </html>
+
 
 
 
