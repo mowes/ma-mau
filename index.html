@@ -78,6 +78,9 @@
         <audio id="Coconut">
             <source src="Coconut.mp3" type="audio/mpeg">
         </audio>
+        <audio id="Onion">
+            <source src="Onion.mp3" type="audio/mpeg">
+        </audio>
         <audio id="Pumpkin">
             <source src="Pumpkin.mp3" type="audio/mpeg">
         </audio>
@@ -114,6 +117,9 @@
         </button>
         <button id="customPlayButton1">
             Đa nhiệm
+        </button>
+        <button id="customPlayButton13">
+            Close app
         </button>
         <button id="customPlayButton2">
             Mở tiktok
@@ -204,11 +210,17 @@
         customButton12.addEventListener('click', function() {
             Cabbage.play();
         });
+        const Onion = document.getElementById('Onion');
+        const customButton13 = document.getElementById('customPlayButton13');
+        customButton13.addEventListener('click', function() {
+            Onion.play();
+        });
         
     </script>
 
 </body>
 </html>
+
 
 
 
