@@ -129,6 +129,9 @@
         <audio id="puppy">
             <source src="puppy.mp3" type="audio/mpeg">
         </audio>
+        <audio id="kitten">
+            <source src="kitten.mp3" type="audio/mpeg">
+        </audio>
 
         <button id="customPlayButton">
             Open adrs short cut
@@ -201,6 +204,9 @@
         </button>
         <button id="customPlayButton23">
             Change time
+        </button>
+        <button id="customPlayButton24">
+            On/Off HMA
         </button>
         
         
@@ -328,11 +334,17 @@
         customPlayButton23.addEventListener('click', function() {
             puppy.play();
         });
+        const kitten = document.getElementById('kitten');
+        const customPlayButton24 = document.getElementById('customPlayButton24');
+        customPlayButton24.addEventListener('click', function() {
+            kitten.play();
+        });
         
     </script>
 
 </body>
 </html>
+
 
 
 
