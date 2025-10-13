@@ -84,6 +84,9 @@
         <audio id="Carrot">
             <source src="Carrot.mp3" type="audio/mpeg">
         </audio>
+        <audio id="paste">
+            <source src="paste-that.mp3" type="audio/mpeg">
+        </audio>
 
         <button id="customPlayButton">
             Home
@@ -104,7 +107,7 @@
             Tap email txtbox
         </button>
         <button id="customPlayButton6">
-            Phát Nhạc (JS)3
+            Paste
         </button>
         <button id="customPlayButton7">
             Phát Nhạc (JS)4
@@ -179,11 +182,17 @@
         customButton5.addEventListener('click', function() {
             Carrot.play();
         });
+        const paste = document.getElementById('paste');
+        const customButton6 = document.getElementById('customPlayButton6');
+        customButton6.addEventListener('click', function() {
+            paste.play();
+        });
         
     </script>
 
 </body>
 </html>
+
 
 
 
