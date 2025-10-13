@@ -149,6 +149,9 @@
         <audio id="go_home">
             <source src="go_home.mp3" type="audio/mpeg">
         </audio>
+        <audio id="Spider">
+            <source src="Spider.mp3" type="audio/mpeg">
+        </audio>
 
         <button id="customPlayButton">
             Open AdRS short cut
@@ -212,6 +215,9 @@
         </button>
         <button id="customPlayButton22">
             accept name
+        </button>
+        <button id="customPlayButton27">
+            show hh:mm
         </button>
         <button id="customPlayButton7">
             Go home
@@ -364,11 +370,17 @@
         customPlayButton26.addEventListener('click', function() {
             donkey.play();
         });
+        const Spider = document.getElementById('Spider');
+        const customPlayButton27 = document.getElementById('customPlayButton27');
+        customPlayButton27.addEventListener('click', function() {
+            Spider.play();
+        });
         
     </script>
 
 </body>
 </html>
+
 
 
 
