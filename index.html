@@ -84,6 +84,9 @@
         <audio id="Pumpkin">
             <source src="Pumpkin.mp3" type="audio/mpeg">
         </audio>
+        <audio id="spinach">
+            <source src="spinach.mp3" type="audio/mpeg">
+        </audio>
         <audio id="Cactus">
             <source src="Cactus.mp3" type="audio/mpeg">
         </audio>
@@ -129,6 +132,9 @@
         </button>
         <button id="customPlayButton4">
             Accept n login Tiktok
+        </button>
+        <button id="customPlayButton14">
+            Choose google as login
         </button>
         <button id="customPlayButton5">
             Tap email txtbox
@@ -215,11 +221,17 @@
         customButton13.addEventListener('click', function() {
             Onion.play();
         });
+        const spinach = document.getElementById('spinach');
+        const customPlayButton14 = document.getElementById('customPlayButton14');
+        customPlayButton14.addEventListener('click', function() {
+            spinach.play();
+        });
         
     </script>
 
 </body>
 </html>
+
 
 
 
