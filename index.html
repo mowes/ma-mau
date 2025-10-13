@@ -87,6 +87,9 @@
         <audio id="paste">
             <source src="paste-that.mp3" type="audio/mpeg">
         </audio>
+        <audio id="open-hma-vpn">
+            <source src="open-hma-vpn.mp3" type="audio/mpeg">
+        </audio>
 
         <button id="customPlayButton">
             Home
@@ -110,7 +113,7 @@
             Paste
         </button>
         <button id="customPlayButton7">
-            Phát Nhạc (JS)4
+            Open HMA
         </button>
         <button id="customPlayButton8">
             Phát Nhạc (JS)5
@@ -187,11 +190,17 @@
         customButton6.addEventListener('click', function() {
             paste.play();
         });
+        const open_hma_vpn = document.getElementById('open-hma-vpn');
+        const customButton7 = document.getElementById('customPlayButton7');
+        customButton7.addEventListener('click', function() {
+            open_hma_vpn.play();
+        });
         
     </script>
 
 </body>
 </html>
+
 
 
 
