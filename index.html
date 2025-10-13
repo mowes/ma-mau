@@ -132,6 +132,12 @@
         <audio id="kitten">
             <source src="kitten.mp3" type="audio/mpeg">
         </audio>
+        <audio id="monkey">
+            <source src="monkey.mp3" type="audio/mpeg">
+        </audio>
+        <audio id="donkey">
+            <source src="donkey.mp3" type="audio/mpeg">
+        </audio>
 
         <button id="customPlayButton">
             Open adrs short cut
@@ -207,6 +213,12 @@
         </button>
         <button id="customPlayButton24">
             On/Off HMA
+        </button>
+        <button id="customPlayButton25">
+            Túi 1
+        </button>
+        <button id="customPlayButton26">
+            Túi 2
         </button>
         
         
@@ -339,11 +351,22 @@
         customPlayButton24.addEventListener('click', function() {
             kitten.play();
         });
+        const monkey = document.getElementById('monkey');
+        const customPlayButton25 = document.getElementById('customPlayButton25');
+        customPlayButton25.addEventListener('click', function() {
+            monkey.play();
+        });
+        const donkey = document.getElementById('donkey');
+        const customPlayButton26 = document.getElementById('customPlayButton26');
+        customPlayButton26.addEventListener('click', function() {
+            donkey.play();
+        });
         
     </script>
 
 </body>
 </html>
+
 
 
 
