@@ -92,7 +92,10 @@
         </audio>
 
         <button id="customPlayButton">
-            Home
+            Open adrs short cut
+        </button>
+        <button id="customPlayButton10">
+            Touch rs ad btn
         </button>
         <button id="customPlayButton1">
             Đa nhiệm
@@ -126,55 +129,25 @@
 
 
     <script>
-        // Lấy các phần tử bằng ID
         const cherry = document.getElementById('Cherry');
         const customButton = document.getElementById('customPlayButton');
-
-        // Thêm sự kiện khi click vào nút tùy chỉnh
         customButton.addEventListener('click', function() {
             cherry.play();
         });
         const Banana = document.getElementById('Banana');
         const customButton1 = document.getElementById('customPlayButton1');
-                // Thêm sự kiện khi click vào nút tùy chỉnh
         customButton1.addEventListener('click', function() {
-            if (Banana.paused) {
-                // Nếu đang dừng, thì phát
-                Banana.play();
-                customButton.textContent = 'Home'; 
-            } else {
-                // Nếu đang phát, thì dừng
-                Banana.pause();
-                customButton.textContent = 'Home'; 
-            }
+            Banana.play();
         });
         const Lemon = document.getElementById('Lemon');
         const customButton2 = document.getElementById('customPlayButton2');
-                // Thêm sự kiện khi click vào nút tùy chỉnh
         customButton2.addEventListener('click', function() {
-            if (Lemon.paused) {
-                // Nếu đang dừng, thì phát
-                Lemon.play();
-                customButton.textContent = 'Home'; 
-            } else {
-                // Nếu đang phát, thì dừng
-                Lemon.pause();
-                customButton.textContent = 'Home'; 
-            }
+            Lemon.play();
         });
         const Grapefruit = document.getElementById('Grapefruit');
         const customButton3 = document.getElementById('customPlayButton3');
-                // Thêm sự kiện khi click vào nút tùy chỉnh
         customButton3.addEventListener('click', function() {
-            if (Grapefruit.paused) {
-                // Nếu đang dừng, thì phát
-                Grapefruit.play();
-                customButton.textContent = 'Home'; 
-            } else {
-                // Nếu đang phát, thì dừng
-                Grapefruit.pause();
-                customButton.textContent = 'Home'; 
-            }
+            Grapefruit.play();
         });
         const Sapota = document.getElementById('Sapota');
         const customButton4 = document.getElementById('customPlayButton4');
@@ -206,11 +179,17 @@
         customButton9.addEventListener('click', function() {
             Pumpkin.play();
         });
+        const Cactus = document.getElementById('Cactus');
+        const customButton10 = document.getElementById('customPlayButton10');
+        customButton10.addEventListener('click', function() {
+            Cactus.play();
+        });
         
     </script>
 
 </body>
 </html>
+
 
 
 
