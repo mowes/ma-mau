@@ -155,6 +155,9 @@
         <audio id="eagle">
             <source src="eagle.mp3" type="audio/mpeg">
         </audio>
+        <audio id="kitti">
+            <source src="kitti.mp3" type="audio/mpeg">
+        </audio>
 
         <button id="customPlayButton">
             Open AdRS short cut
@@ -229,7 +232,10 @@
             On/Off HMA
         </button>
         <button id="customPlayButton23">
-            Change time
+            Time 31
+        </button>
+        <button id="customPlayButton29">
+            Time 30
         </button>
         <button id="customPlayButton25">
             BOX 1
@@ -386,11 +392,17 @@
         customPlayButton28.addEventListener('click', function() {
             eagle.play();
         });
+        const kitti = document.getElementById('kitti');
+        const customPlayButton29 = document.getElementById('customPlayButton29');
+        customPlayButton29.addEventListener('click', function() {
+            kitti.play();
+        });
         
     </script>
 
 </body>
 </html>
+
 
 
 
