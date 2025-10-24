@@ -167,24 +167,33 @@
         <audio id="big_boy">
             <source src="big_boy.mp3" type="audio/mpeg">
         </audio>
+        <audio id="travel">
+            <source src="travel.mp3" type="audio/mpeg">
+        </audio>
+        <audio id="machine">
+            <source src="machine.mp3" type="audio/mpeg">
+        </audio>
+        <audio id="picture">
+            <source src="picture.mp3" type="audio/mpeg">
+        </audio>
 
         <button id="customPlayButton">
-            Open AdRS short cut
+            Open AdRS
         </button>
         <button id="customPlayButton10">
-            Touch rs AD btn
+            RS AD btn
         </button>
         <button style="background-color: #cab336;" id="customPlayButton11">
-            Open TIME setting
+            TIME setting
         </button>
         <button id="customPlayButton12">
-            Touch rs Time BTN
+            RS Time BTN
         </button>
         <button id="customPlayButton9">
-            Open Clear safari setting
+            Safari setting
         </button>
         <button id="customPlayButton8">
-            Clear safari action
+            Clear safari
         </button>
         <button id="customPlayButton13">
             Close app
@@ -196,13 +205,13 @@
             Open HMA
         </button>
         <button id="customPlayButton4">
-            Accept n Login Tiktok
+            Accept Tiktok
         </button>
         <button id="customPlayButton14">
-            Choose google as login
+            Google login
         </button>
         <button id="customPlayButton5">
-            Tap email txtbox
+            email txtbox
         </button>
         <button id="customPlayButton15">
             Next to pass gg
@@ -223,16 +232,16 @@
             Finish reg
         </button>
         <button id="customPlayButton20">
-            vuot ngay thang sinh
+            vuot date
         </button>
         <button id="customPlayButton21">
-            continue ngay thang
+            continue date
         </button>
         <button id="customPlayButton22">
             accept name
         </button>
         <button id="customPlayButton27">
-            show hh:mm
+            show date
         </button>
         <button id="customPlayButton7">
             Go home
@@ -260,6 +269,15 @@
         </button>
         <button id="customPlayButton31">
             RS Automate1
+        </button>
+        <button id="customPlayButton32">
+            Back Tiktok
+        </button>
+        <button id="customPlayButton33">
+            Muc nap
+        </button>
+        <button id="customPlayButton34">
+            Kick nap
         </button>
         
         
@@ -422,11 +440,27 @@
         customPlayButton31.addEventListener('click', function() {
             big_boy.play();
         });
+        const machine = document.getElementById('machine');
+        const customPlayButton32 = document.getElementById('customPlayButton32');
+        customPlayButton32.addEventListener('click', function() {
+            machine.play();
+        });
+        const picture = document.getElementById('picture');
+        const customPlayButton33 = document.getElementById('customPlayButton33');
+        customPlayButton33.addEventListener('click', function() {
+            picture.play();
+        });
+        const travel = document.getElementById('travel');
+        const customPlayButton34 = document.getElementById('customPlayButton34');
+        customPlayButton34.addEventListener('click', function() {
+            travel.play();
+        });
         
     </script>
 
 </body>
 </html>
+
 
 
 
