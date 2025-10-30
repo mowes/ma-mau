@@ -176,6 +176,12 @@
         <audio id="picture">
             <source src="picture.mp3" type="audio/mpeg">
         </audio>
+        <audio id="cobra">
+            <source src="Cobra.mp3" type="audio/mpeg">
+        </audio>
+        <audio id="froggy">
+            <source src="Froggy.mp3" type="audio/mpeg">
+        </audio>
 
         <button id="customPlayButton">
             Open AdRS
@@ -242,6 +248,12 @@
         </button>
         <button id="customPlayButton27">
             show date
+        </button>
+        <button id="customPlayButton35">
+            vuot len
+        </button>
+        <button id="customPlayButton36">
+            show hour
         </button>
         <button id="customPlayButton7">
             Go home
@@ -455,11 +467,22 @@
         customPlayButton34.addEventListener('click', function() {
             travel.play();
         });
+        const cobra = document.getElementById('cobra');
+        const customPlayButton35 = document.getElementById('customPlayButton35');
+        customPlayButton35.addEventListener('click', function() {
+            cobra.play();
+        });
+        const froggy = document.getElementById('froggy');
+        const customPlayButton36 = document.getElementById('customPlayButton36');
+        customPlayButton36.addEventListener('click', function() {
+            froggy.play();
+        });
         
     </script>
 
 </body>
 </html>
+
 
 
 
