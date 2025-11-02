@@ -182,6 +182,9 @@
         <audio id="froggy">
             <source src="Froggy.mp3" type="audio/mpeg">
         </audio>
+        <audio id="stronger">
+            <source src="stronger.mp3" type="audio/mpeg">
+        </audio>
 
         <button id="customPlayButton">
             Open AdRS
@@ -277,10 +280,7 @@
             Tap noti
         </button>
         <button id="customPlayButton30">
-            RS Automate0
-        </button>
-        <button id="customPlayButton31">
-            RS Automate1
+            RS VoiceControl
         </button>
         <button id="customPlayButton32">
             Back Tiktok
@@ -442,15 +442,10 @@
         customPlayButton29.addEventListener('click', function() {
             kitti.play();
         });
-        const big_cat = document.getElementById('big_cat');
+        const stronger = document.getElementById('stronger');
         const customPlayButton30 = document.getElementById('customPlayButton30');
         customPlayButton30.addEventListener('click', function() {
-            big_cat.play();
-        });
-        const big_boy = document.getElementById('big_boy');
-        const customPlayButton31 = document.getElementById('customPlayButton31');
-        customPlayButton31.addEventListener('click', function() {
-            big_boy.play();
+            stronger.play();
         });
         const machine = document.getElementById('machine');
         const customPlayButton32 = document.getElementById('customPlayButton32');
@@ -482,6 +477,7 @@
 
 </body>
 </html>
+
 
 
 
