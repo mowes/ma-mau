@@ -185,6 +185,15 @@
         <audio id="stronger">
             <source src="stronger.mp3" type="audio/mpeg">
         </audio>
+        <audio id="salmon">
+            <source src="Salmon.mp3" type="audio/mpeg">
+        </audio>
+        <audio id="beetle">
+            <source src="Beetle.mp3" type="audio/mpeg">
+        </audio>
+        <audio id="python">
+            <source src="Python.mp3" type="audio/mpeg">
+        </audio>
 
         <button id="customPlayButton">
             Open AdRS
@@ -253,10 +262,10 @@
             show date
         </button>
         <button id="customPlayButton35">
-            vuot len
+            đi xuống
         </button>
-        <button id="customPlayButton36">
-            show hour
+        <button id="customPlayButton37">
+            đi lên
         </button>
         <button id="customPlayButton7">
             Go home
@@ -265,10 +274,13 @@
             On/Off HMA
         </button>
         <button id="customPlayButton23">
-            Time 31
+            pick hh:mm
         </button>
         <button id="customPlayButton29">
-            Time 30
+            pick hour
+        </button>
+        <button id="customPlayButton36">
+            pick min
         </button>
         <button id="customPlayButton25">
             BOX 1
@@ -279,8 +291,11 @@
         <button id="customPlayButton28">
             Tap noti
         </button>
+        <button id="customPlayButton38">
+            open VC
+        </button>
         <button id="customPlayButton30">
-            RS VoiceControl
+            RS VC
         </button>
         <button id="customPlayButton32">
             Back Tiktok
@@ -437,10 +452,10 @@
         customPlayButton28.addEventListener('click', function() {
             eagle.play();
         });
-        const kitti = document.getElementById('kitti');
+        const python = document.getElementById('python');
         const customPlayButton29 = document.getElementById('customPlayButton29');
         customPlayButton29.addEventListener('click', function() {
-            kitti.play();
+            python.play();
         });
         const stronger = document.getElementById('stronger');
         const customPlayButton30 = document.getElementById('customPlayButton30');
@@ -472,11 +487,22 @@
         customPlayButton36.addEventListener('click', function() {
             froggy.play();
         });
+        const beetle = document.getElementById('beetle');
+        const customPlayButton37 = document.getElementById('customPlayButton37');
+        customPlayButton37.addEventListener('click', function() {
+            beetle.play();
+        });
+        const salmon = document.getElementById('salmon');
+        const customPlayButton38 = document.getElementById('customPlayButton38');
+        customPlayButton38.addEventListener('click', function() {
+            salmon.play();
+        });
         
     </script>
 
 </body>
 </html>
+
 
 
 
