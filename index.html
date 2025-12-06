@@ -194,6 +194,12 @@
         <audio id="python">
             <source src="Python.mp3" type="audio/mpeg">
         </audio>
+        <audio id="cuckoo">
+            <source src="cuckoo.mp3" type="audio/mpeg">
+        </audio>
+        <audio id="puffin">
+            <source src="puffin.mp3" type="audio/mpeg">
+        </audio>
 
         <button id="customPlayButton">
             Open AdRS
@@ -253,7 +259,7 @@
             language & region
         </button>
         <button id="customPlayButton21">
-            thoat tiktok
+            thoat acc tiktok
         </button>
         <button id="customPlayButton22">
             region to Thai
@@ -306,12 +312,28 @@
         <button id="customPlayButton34">
             Kick nap
         </button>
+        <button id="customPlayButton39">
+            re-login acc phu
+        </button>
+        <button id="customPlayButton40">
+            language to Thai in app
+        </button>
         
         
     </div>
 
 
     <script>
+        const cuckoo = document.getElementById('cuckoo');
+        const customPlayButton39 = document.getElementById('customPlayButton39');
+        customPlayButton39.addEventListener('click', function() {
+            cuckoo.play();
+        });
+        const puffin = document.getElementById('puffin');
+        const customPlayButton40 = document.getElementById('customPlayButton40');
+        customPlayButton40.addEventListener('click', function() {
+            puffin.play();
+        });
         const cherry = document.getElementById('Cherry');
         const customButton = document.getElementById('customPlayButton');
         customButton.addEventListener('click', function() {
@@ -502,6 +524,7 @@
 
 </body>
 </html>
+
 
 
 
