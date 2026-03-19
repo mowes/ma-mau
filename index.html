@@ -68,6 +68,9 @@
         <audio id="Kiwi">
             <source src="Kiwi.mp3" type="audio/mpeg">
         </audio>
+        <audio id="cricket">
+            <source src="cricket.mp3" type="audio/mpeg">
+        </audio>
         <audio id="Cabbage">
             <source src="Cabbage.mp3" type="audio/mpeg">
         </audio>
@@ -345,6 +348,9 @@
         <button id="customPlayButton42">
             relogin
         </button>
+        <button id="customPlayButton47">
+            xoa acc clone
+        </button>
         
         
     </div>
@@ -390,6 +396,11 @@
         const customPlayButton46 = document.getElementById('customPlayButton46');
         customPlayButton46.addEventListener('click', function() {
             falcon.play();
+        });
+        const cricket = document.getElementById('cricket');
+        const customPlayButton47 = document.getElementById('customPlayButton47');
+        customPlayButton47.addEventListener('click', function() {
+            cricket.play();
         });
         const cherry = document.getElementById('Cherry');
         const customButton = document.getElementById('customPlayButton');
