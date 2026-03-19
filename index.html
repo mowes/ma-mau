@@ -200,6 +200,9 @@
         <audio id="hyena">
             <source src="hyena.mp3" type="audio/mpeg">
         </audio>
+        <audio id="coffee">
+            <source src="coffee.mp3" type="audio/mpeg">
+        </audio>
 
         <button id="customPlayButton">
             Open AdRS
@@ -303,6 +306,9 @@
         <button id="customPlayButton38">
             switch EN/Thai
         </button>
+        <button id="customPlayButton44">
+            switch EN/France
+        </button>
         <button id="customPlayButton30">
             RS VC
         </button>
@@ -357,6 +363,11 @@
         const customPlayButton43 = document.getElementById('customPlayButton43');
         customPlayButton43.addEventListener('click', function() {
             kitti.play();
+        });
+        const coffee = document.getElementById('coffee');
+        const customPlayButton44 = document.getElementById('customPlayButton44');
+        customPlayButton44.addEventListener('click', function() {
+            coffee.play();
         });
         const cherry = document.getElementById('Cherry');
         const customButton = document.getElementById('customPlayButton');
