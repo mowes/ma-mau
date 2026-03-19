@@ -98,6 +98,9 @@
         <audio id="paste">
             <source src="Answer.mp3" type="audio/mpeg">
         </audio>
+        <audio id="nature">
+            <source src="nature.mp3" type="audio/mpeg">
+        </audio>
         <audio id="open-hma-vpn">
             <source src="open-hma-vpn.mp3" type="audio/mpeg">
         </audio>
@@ -270,6 +273,9 @@
         <button id="customPlayButton22">
             region to Thai
         </button>
+        <button id="customPlayButton45">
+            region to France
+        </button>
         <button id="customPlayButton27">
             show date
         </button>
@@ -368,6 +374,11 @@
         const customPlayButton44 = document.getElementById('customPlayButton44');
         customPlayButton44.addEventListener('click', function() {
             coffee.play();
+        });
+        const nature = document.getElementById('nature');
+        const customPlayButton45 = document.getElementById('customPlayButton45');
+        customPlayButton45.addEventListener('click', function() {
+            nature.play();
         });
         const cherry = document.getElementById('Cherry');
         const customButton = document.getElementById('customPlayButton');
