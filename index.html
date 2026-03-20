@@ -212,6 +212,9 @@
         <audio id="coffee">
             <source src="coffee.mp3" type="audio/mpeg">
         </audio>
+        <audio id="3hyena">
+            <source src="3hyena.mp3" type="audio/mpeg">
+        </audio>
 
         <button id="customPlayButton">
             Open AdRS
@@ -271,7 +274,7 @@
             Scroll to bottom
         </button>
         <button id="customPlayButton18">
-            Agree gg/txt box
+            Agree gg/pws txt box
         </button>
         <button id="customPlayButton19">
             Finish reg
@@ -280,7 +283,7 @@
             language & region
         </button>
         <button id="customPlayButton21">
-            thoat acc tiktok
+            logout tiktok
         </button>
         <button id="customPlayButton22">
             region to Thai
@@ -301,7 +304,7 @@
             Go home
         </button>
         <button id="customPlayButton23">
-            hh:mm/change language/keep english
+            change language/keep...
         </button>
         <button id="customPlayButton29">
             hour/tap region
@@ -309,22 +312,22 @@
         <button id="customPlayButton36">
             pick min
         </button>
-        <button id="customPlayButton25">
+        <button id="customPlayButton25" style="display: none;">
             BOX 1
         </button>
-        <button id="customPlayButton26">
+        <button id="customPlayButton26" style="display: none;">
             BOX 2
         </button>
-        <button id="customPlayButton28">
+        <button id="customPlayButton28" style="display: none;">
             Tap noti
         </button>
         <button id="customPlayButton38">
-            switch EN/Thai
+            switch 1/2
         </button>
         <button id="customPlayButton44">
-            switch EN/France
+            switch 1/3
         </button>
-        <button id="customPlayButton30">
+        <button id="customPlayButton30" style="display: none;">
             RS VC
         </button>
         <button id="customPlayButton32">
@@ -342,7 +345,7 @@
         <button id="customPlayButton40">
             language to Thai in app
         </button>
-        <button id="customPlayButton41">
+        <button id="customPlayButton41" style="display: none;">
             change avatar
         </button>
         <button id="customPlayButton42">
@@ -350,6 +353,9 @@
         </button>
         <button id="customPlayButton47">
             xoa acc clone
+        </button>
+        <button id="customPlayButton48">
+            dien pass acc lot
         </button>
         
         
@@ -401,6 +407,11 @@
         const customPlayButton47 = document.getElementById('customPlayButton47');
         customPlayButton47.addEventListener('click', function() {
             cricket.play();
+        });
+        const 3hyena = document.getElementById('3hyena');
+        const customPlayButton48 = document.getElementById('customPlayButton48');
+        customPlayButton48.addEventListener('click', function() {
+            3hyena.play();
         });
         const cherry = document.getElementById('Cherry');
         const customButton = document.getElementById('customPlayButton');
